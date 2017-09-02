@@ -4,11 +4,12 @@
 using namespace std;
 void ls() {
 
-DIR *pointerToDirectory;                                            // A type that describes a directory stream.
-struct dirent *directoryStream;                                     /* structure dirent includes the following members:
-                                                                        ino_t  d_ino       file serial number
-                                                                        char   d_name[]    name of entry                  */
-
+// A type that describes a directory stream.
+DIR *pointerToDirectory;
+/* structure dirent includes the following members:
+struct dirent *directoryStream;                                     
+ino_t  d_ino       file serial number                                                                        
+char   d_name[]    name of entry                  */
 
 pointerToDirectory = opendir("./");                                 //Open the current directory.
                                                                     /* / is the root of the current drive;
