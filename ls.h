@@ -2,7 +2,7 @@
 #include<dirent.h>
 
 using namespace std;
-int main() {
+void ls() {
 
 DIR *pointerToDirectory;                                            // A type that describes a directory stream.
 struct dirent *directoryStream;                                     /* structure dirent includes the following members:
@@ -26,5 +26,4 @@ else {
     cout<<"Couldn't open the directory";
 }
 
-return 0;
 }
