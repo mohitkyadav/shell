@@ -17,7 +17,7 @@ int dir_finder(char*, char*);
 char *strrev(char *); //Function to reverse the string given as an argument
 int dir_finder(char* curDir, char* inp) // Recursive function for finding file/directory and deleteing them
 {
-    cout << curDir;
+    //cout << curDir;
     d = opendir(curDir);
     struct dirent *dir; /* Includes :- 1) ino_t d_ino - stores file serial number
     								   2) char d_name[] - stores name of entry														*/

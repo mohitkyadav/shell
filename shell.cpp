@@ -66,6 +66,19 @@ int main()
                 mk_dir(&curDir[0], &newFolder[0], &flag[0]);
             }
         }
+        else if(commands[0] == "rmdir")
+        {
+        	string temp = curDir;
+        	char* inDir = &temp[0];
+        	char* dname = &commands[1][0];
+	        char* inp = (char*)malloc(sizeof(char)*100);
+	        //cout << inDir << " " << dname << endl;
+	        strcat(inDir,"/");
+	        strcat(inDir,dname);
+	        strcpy(inp,inDir);
+	        //cout << inDir << endl;
+	        dir_finder(inDir,inp);
+        }
         else
         {
         	cout << "Invalid keyword.\n";
