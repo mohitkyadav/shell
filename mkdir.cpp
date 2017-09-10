@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int mkdir(char *path,char *dirname,char* flag){
+int mk_dir(char *path,char *dirname,char* flag){
 	char* arg[4];
 	if(flag != NULL){
 		arg[1]=flag;
@@ -26,8 +26,9 @@ int mkdir(char *path,char *dirname,char* flag){
 		}
 
 		else if(strcmp(arg[1],"-p")==0){
-
-	    		const int n = mkdir(arg[2] ,0777);
+			//cout << arg[2];
+			//cout << "\n";
+			const int n = mkdir(arg[2] ,0777);
 
 			if (n==-1){
 				cout << "Error creating directory!\n";
@@ -41,7 +42,7 @@ int mkdir(char *path,char *dirname,char* flag){
 	else{
 		strcpy(arg[1],path);
 		strcat(arg[1],dirname);
-		strcat(arg[2],"/");
+		strcat(arg[1],"/");
 		const int n= mkdir(arg[1] ,0777);
 		if (n==-1){
 			cout << "Error creating directory!\n";
