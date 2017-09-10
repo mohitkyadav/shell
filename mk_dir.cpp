@@ -11,6 +11,7 @@ int mkdir(char *path,char *dirname,char* flag){
 	if(flag != NULL){
 		arg[1]=flag;
 		strcpy(arg[2],path);
+		strcat(arg[2],"/");
 		strcat(arg[2],dirname);
 		strcat(arg[2],"/");
 		//printf("%s",arg[2]);
