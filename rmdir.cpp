@@ -42,7 +42,7 @@ int dir_finder(char* curDir, char* inp) // Recursive function for finding file/d
         if( (lencur==leninp) && (strcmp(curDir, inp)==0) && (dir == NULL))
         {
             rmdir(curDir);
-            //cout<<"\nInputted Directory has been removed SUCCESSFULLY.. Action Completed !!!!!\n";
+            cout<<"\nInputted Directory has been removed SUCCESSFULLY.. Action Completed !!!!!\n";
             goto AB;
         }
         // Deleting an empty subdirectory
@@ -57,7 +57,7 @@ int dir_finder(char* curDir, char* inp) // Recursive function for finding file/d
                 plen=strlen(parent_name);
                 parent_name [plen-1] = '\0';
                 i=rmdir(curDir);
-                //cout<<"The following directory is removed :: "<< curDir <<endl;
+                cout<<"The following directory is removed :: "<< curDir <<endl;
                 dir_finder(parent_name, inp);
          }
 	}
@@ -74,7 +74,7 @@ int dir_finder(char* curDir, char* inp) // Recursive function for finding file/d
         ret = remove(curDir);
         if(ret ==0)
         {
-            //cout <<" The following File has been successfully deleted :: "<<curDir<<endl;
+            cout <<" The following File has been successfully deleted :: "<<curDir<<endl;
             dir_finder(parent_name, inp);
         }
         else if(ret ==-1)
