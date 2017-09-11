@@ -70,16 +70,19 @@ int main()
         }
         else if(commands[0] == "rmdir")
         {
-        	string temp = curDir;
-        	char* inDir = &temp[0];
-        	char* dname = &commands[1][0];
+        	//string temp = curDir;
+        	char* dname = (char*)malloc(sizeof(char)*100);
+		std::strcpy(dname,curDir.c_str());
+        	char* inDir = (char*)malloc(sizeof(char)*100);
+		std::strcpy(inDir,commands[1].c_str());
 	        char* inp = (char*)malloc(sizeof(char)*100);
 	        //cout << inDir << " " << dname << endl;
-	        strcat(inDir,"/");
-	        strcat(inDir,dname);
-	        strcpy(inp,inDir);
-	        //cout << inDir << endl;
-	        dir_finder(inDir,inp);
+	        strcat(dname,"/");
+	        strcat(dname,inDir);
+	        strcpy(inp,dname);
+		
+	       // cout <<endl<< inp << endl<<dname;
+	        dir_finder(dname,inp);
         }
         else
         {

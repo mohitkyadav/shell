@@ -15,10 +15,10 @@ char inp[100];
 DIR* d;
 int dir_finder(char*, char*);
 char *strrev(char *); //Function to reverse the string given as an argument
-int dir_finder(char* curDir, char* inp) // Recursive function for finding file/directory and deleteing them
+int dir_finder(char* dname, char* inp) // Recursive function for finding file/directory and deleteing them
 {
-    //cout << curDir;
-    d = opendir(curDir);
+    //cout << dname;
+    d = opendir(dname);
     struct dirent *dir; /* Includes :- 1) ino_t d_ino - stores file serial number
     								   2) char d_name[] - stores name of entry														*/
     if (d!=NULL)		// Returns NULL when given address is not a directory
@@ -27,59 +27,58 @@ int dir_finder(char* curDir, char* inp) // Recursive function for finding file/d
             {
                 if (strcmp(dir->d_name, ".")==0 || strcmp(dir->d_name, "..")==0 )
                     continue;
-                strcat(curDir,a);
-                strcat(curDir,(dir->d_name));
+                strcat(dname,a);
+                strcat(dname,(dir->d_name));
                 closedir(d);
-                dir_finder(curDir, inp);
-                AB:
-                    return 0;
-
+                dir_finder(dname, inp);
+		return 0;
+               
             }
 
-        lencur=strlen(curDir);
+        lencur=strlen(dname);
         leninp=strlen(inp);
         // Deleting the input directory
-        if( (lencur==leninp) && (strcmp(curDir, inp)==0) && (dir == NULL))
+        if( (lencur==leninp) && (strcmp(dname, inp)==0) && (dir == NULL))
         {
-            rmdir(curDir);
+            rmdir(dname);
             //cout<<"\nInputted Directory has been removed SUCCESSFULLY.. Action Completed !!!!!\n\n\n\n";
-            goto AB;
+            return 0; 
         }
         // Deleting an empty subdirectory
             if(dir==NULL)
             {
 
                 char* parent_name= (char*)malloc(sizeof(char) * 100);
-                strcpy(parent_name,curDir);
+                strcpy(parent_name,dname);
                 parent_name=strrev(parent_name);
                 parent_name = strchr(parent_name, '/');	// Returns the string after the first occurence of passed argument#2
                 parent_name=strrev(parent_name);
                 plen=strlen(parent_name);
                 parent_name [plen-1] = '\0';
-                i=rmdir(curDir);
-                //cout<<"The following directory is removed :: "<< curDir <<endl;
+                i=rmdir(dname);
+                //cout<<"The following directory is removed :: "<< dname <<endl;
                 dir_finder(parent_name, inp);
-         }
+         	}
 	}
 	// Delete the files in directory
     else if(errno == ENOTDIR)
     {
         char* parent_name = (char*)malloc(sizeof(char) * 100);
-		strcpy(parent_name,curDir);
+		strcpy(parent_name,dname);
 	    parent_name=strrev(parent_name);
         parent_name = strchr(parent_name, '/');
         parent_name=strrev(parent_name);
         plen=strlen(parent_name);
         parent_name [plen-1] = '\0';
-        ret = remove(curDir);
+        ret = remove(dname);
         if(ret ==0)
         {
-            //cout <<" The following File has been successfully deleted :: "<<curDir<<endl;
+            //cout <<" The following File has been successfully deleted :: "<<dname<<endl;
             dir_finder(parent_name, inp);
         }
         else if(ret ==-1)
         {
-            //cout<<" "<< curDir <<"  :- File cannot be deleted \n";
+            //cout<<" "<< dname <<"  :- File cannot be deleted \n";
         }
     }
     else
