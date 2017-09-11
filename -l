@@ -22,7 +22,7 @@ if( pointerToDirectory != NULL) {
         cout<<directoryStream->d_name;
            size_t s =  getFilesize(directoryStream->d_name);
            if(s!=0)
-           cout<<"\t"<<s/1024<<" KB";                             // Print the name of directories in current directory.
+           cout<<"\t"<<s/1024<<" KB";                             
         cout<<"\n";
     }
     closedir(pointerToDirectory);
