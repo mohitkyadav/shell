@@ -25,7 +25,7 @@ int main()
     while(1)
     {
         string args;
-        cout << "myshell$: " << curDir << ":";
+        cout << "myshell: " << curDir << "$ ";
         getline(cin, args);
         vector < string > commands = split(args, ' ');
         if(commands[0] == "pwd")
@@ -86,40 +86,5 @@ int main()
         	cout << "Invalid keyword.\n";
         }
         commands.clear();
-    }
-    while(1)
-    {
-       
-    
-        //string newDir = curDir + "/" + "hi";
-        //string newDir = "hi";
-        //string flag = "-p";
-        //cout << "myshell$: " << curDir << ":";
-        //string args;
-        //cin >> args;
-        /*
-        string args;
-        args = "hi";
-        //cin >> args;
-        //ls(curDir.c_str());
-        //char* path = cd(args.c_str());
-        //cout << path;
-        char* path = &args[0];
-         char *test = &curDir[0];
-         char *test2 = &newDir[0];
-         char *test3= &flag[0];
-         strcpy(inp,path);
-         cout << path << inp;
-         dir_finder(path, inp);
-        //mkdir(test, test2, NULL);
-        */
-        /*
-        string args;
-        args = "hi/hi";
-        char* path = &args[0];
-        strcpy(inp,path);
-        dir_finder(path, inp);
-        */
-        break;
     }
 }
