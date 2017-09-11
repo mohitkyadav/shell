@@ -27,8 +27,10 @@ void ls(const char*  curDir)
         {
             // Print the name of directories in current directory.
             cout << directoryStream->d_name;
-            cout << "\n";
+            cout << "  ";
         }
+        cout << "\n";
+
         closedir(pointerToDirectory);
     }
     else
