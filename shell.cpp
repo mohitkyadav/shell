@@ -1,5 +1,5 @@
-#include "mkdir.cpp"
 #include "ls.cpp"
+#include "mkdir.cpp"
 #include "pwd.cpp"
 #include "rmdir.cpp"
 #include "cd.cpp"
@@ -53,17 +53,19 @@ int main()
             {
                 newFolder = commands[2];
                 flag = commands[1];
-                cin.clear();
-                fflush(stdin);
-                mk_dir(&curDir[0], &newFolder[0], &flag[0]);     
+                if(flag == "-p")
+                {
+                	mk_dirp(curDir, newFolder);     
+                }
+                else if(flag == "-v")
+                {
+                	mk_dirv(curDir, newFolder);     
+                }
             }
             else
             {
                 newFolder = commands[1];
-                flag = "-p";
-                cin.clear();
-                fflush(stdin);
-                mk_dir(&curDir[0], &newFolder[0], &flag[0]);
+                mk_dir(curDir, newFolder);
             }
         }
         else if(commands[0] == "rmdir")
@@ -83,6 +85,7 @@ int main()
         {
         	cout << "Invalid keyword.\n";
         }
+        commands.clear();
     }
     while(1)
     {
