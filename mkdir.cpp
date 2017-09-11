@@ -19,8 +19,7 @@ int mk_dirv(string path, string dirname){
 	return 0;
 }
 
-int mk_dirp(string path, string dirname){
-	path += "/" + dirname + "/";
+int mk_dirp(string path){
 	mkdir(&path[0], 0777);
 	return 0;
 }

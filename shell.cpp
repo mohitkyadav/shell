@@ -55,7 +55,7 @@ int main()
                 flag = commands[1];
                 if(flag == "-p")
                 {
-                	mk_dirp(curDir, newFolder);     
+                	mk_dirp(newFolder);     
                 }
                 else if(flag == "-v")
                 {
