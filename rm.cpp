@@ -3,7 +3,6 @@
 #include <sys/types.h>  // used for ino_t
 #include <dirent.h>     // used for structure : struct dirent
 #include <cerrno>		// For finding error in opening directory
-#include<stdlib.h>		// exit()
 #include<cstdio>		// perror() and remove()
 #include<unistd.h>		// rmdir()
 
@@ -64,8 +63,8 @@ int dir_finder(char* dname, char* inp)
     else if(errno == ENOTDIR)
     {
         char* parent_name = (char*)malloc(sizeof(char) * 100);
-		strcpy(parent_name,dname);
-	    parent_name=strrev(parent_name);
+	strcpy(parent_name,dname);
+	parent_name=strrev(parent_name);
         parent_name = strchr(parent_name, '/');
         parent_name=strrev(parent_name);
         plen=strlen(parent_name);
