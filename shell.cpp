@@ -1,5 +1,4 @@
 #include "ls.cpp"
-#include "ls-l.cpp"
 #include "mkdir.cpp"
 #include "pwd.cpp"
 #include "rmdir.cpp"
