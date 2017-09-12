@@ -58,7 +58,14 @@ int main()
         }
         else if(commands[0] == "cd")
         {
-            curDir = (string)cd(commands[1].c_str());
+        	if(commands.size() == 1)
+        	{
+        		curDir = "/home/";
+        	}
+        	else
+        	{
+            	curDir = (string)cd(commands[1].c_str());
+        	}
         }
         else if(commands[0] == "exit")
         {
