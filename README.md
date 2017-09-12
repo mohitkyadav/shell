@@ -36,7 +36,7 @@ Creates a new directory in the given path
 ## *mkdir -v dir_name*
 Creates a new directory named dir_name in current directory and prints "dir_name created" on the console window.
 
-## *rm dir_name*
+## *rm -rf dir_name*
 Deletes the directory named dir_name
 
 ## *exit*
