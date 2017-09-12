@@ -19,7 +19,7 @@ OS lab mini project -1
 `./shell`
 
 # Documentation
-## **cd**
+
 ## *cd dir_name*
 
 dir_name is the path of the new working directory.
