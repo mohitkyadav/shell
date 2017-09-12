@@ -4,7 +4,7 @@
 * Ayush Mudgal --mkdir
 * Harshendra shah --mkdir
 * Jayant Sharma --cd
-* Mohit Kumar Yadav --shell
+* Mohit Kumar Yadav --shell, --rm
 * Pritha Upadhyay     -- pwd
 * Raja Bhargava       -- ls -l
 * Saurabh Pandit      -- rmdir
@@ -36,7 +36,7 @@ Creates a new directory in the given path
 ## *mkdir -v dir_name*
 Creates a new directory named dir_name in current directory and prints "dir_name created" on the console window.
 
-## *rmdir dir_name*
+## *rm dir_name*
 Deletes the directory named dir_name
 
 ## *exit*

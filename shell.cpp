@@ -6,11 +6,12 @@
 #include "ls.cpp"
 #include "mkdir.cpp"
 #include "pwd.cpp"
-#include "rmdir.cpp"
+#include "rm.cpp"
 #include "cd.cpp"
 
 using namespace std;
 
+// splits the line into a vector of string
 vector <string> split(const string &text, char sep)
 {
 	vector<string> commands;
@@ -63,6 +64,7 @@ int main()
         {
             exit(0);
         }
+        // call mkdir
         else if(commands[0] == "mkdir")
         {
             string newFolder;
@@ -86,13 +88,13 @@ int main()
                 mk_dir(curDir, newFolder);
             }
         }
-        else if(commands[0] == "rmdir")
+        // call rm -rf
+        else if(commands[0] == "rm" && commands[1] == "-rf")
         {
-        	//string temp = curDir;
         	char* dname = (char*)malloc(sizeof(char)*100);
 			std::strcpy(dname,curDir.c_str());
         	char* inDir = (char*)malloc(sizeof(char)*100);
-			std::strcpy(inDir,commands[1].c_str());
+			std::strcpy(inDir,commands[2].c_str());
 	        char* inp = (char*)malloc(sizeof(char)*100);
 	        //cout << inDir << " " << dname << endl;
 	        strcat(dname,"/");
