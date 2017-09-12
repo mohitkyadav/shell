@@ -9,13 +9,16 @@
 
 
 using namespace std;
+
 char* a = (char*)"/";
 int ret=1,i,plen,lencur,leninp;
 char inp[100];
 DIR* d;
 int dir_finder(char*, char*);
 char *strrev(char *); //Function to reverse the string given as an argument
-int dir_finder(char* dname, char* inp) // Recursive function for finding file/directory and deleteing them
+
+// Recursive function for finding file/directory and deleteing them
+int dir_finder(char* dname, char* inp) 
 {
     //cout << dname;
     d = opendir(dname);
@@ -24,16 +27,15 @@ int dir_finder(char* dname, char* inp) // Recursive function for finding file/di
     if (d!=NULL)		// Returns NULL when given address is not a directory
     {
         while ((dir = readdir(d)) != NULL)   // On successfull completion, returns pointer to the object "dir" of type "struct dirent"
-            {
-                if (strcmp(dir->d_name, ".")==0 || strcmp(dir->d_name, "..")==0 )
-                    continue;
-                strcat(dname,a);
-                strcat(dname,(dir->d_name));
-                closedir(d);
-                dir_finder(dname, inp);
-		return 0;
-               
-            }
+        {
+            if (strcmp(dir->d_name, ".")==0 || strcmp(dir->d_name, "..")==0 )
+                continue;
+            strcat(dname,a);
+            strcat(dname,(dir->d_name));
+            closedir(d);
+            dir_finder(dname, inp);
+	        return 0;
+        }
 
         lencur=strlen(dname);
         leninp=strlen(inp);
@@ -88,15 +90,15 @@ int dir_finder(char* dname, char* inp) // Recursive function for finding file/di
 // Function to reverse the passed string
 char *strrev(char *str)
 {
-      char *p1, *p2;
+    char *p1, *p2;
 
-      if (! str || ! *str)
-            return str;
-      for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2)
-      {
-            *p1 ^= *p2;
-            *p2 ^= *p1;
-            *p1 ^= *p2;
-      }
-      return str;
+    if (! str || ! *str)
+        return str;
+    for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2)
+    {
+        *p1 ^= *p2;
+        *p2 ^= *p1;
+        *p1 ^= *p2;
+    }
+    return str;
 }

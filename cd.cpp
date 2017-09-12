@@ -16,5 +16,3 @@ char* cd(const char *dir)
     return path;
 }
 #endif
-
-
