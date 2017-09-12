@@ -1,7 +1,11 @@
+#include <iostream>
+#include <cstring>
 #include <string>
-#include "bits/stdc++.h"
 #include <pwd.h>
 #include <grp.h>
+#include <algorithm>
+#include <vector>
+
 #include "rmdir.cpp"
 #include "ls.cpp"
 #include "mkdir.cpp"
@@ -32,19 +36,21 @@ int main()
 	register uid_t uid;
 	uid = geteuid ();
 	pw = getpwuid (uid);
-	string root_name = pw->pw_name;
+	string user_name = pw->pw_name;
     string curDir = pwd();
     while(1)
     {
         string args;
-        cout << root_name << ": " << curDir << "$ ";
+        cout << user_name << ": " << curDir << "$ ";
         getline(cin, args);
-        vector < string > commands = split(args, ' ');
+        vector <string> commands = split(args, ' ');
+        // Call for pwd
         if(commands[0] == "pwd")
         {
             curDir = pwd();
             cout << curDir << endl;
         }
+        // Call for ls
         else if(commands[0] == "ls")
         {
         	if( commands.size() > 1)
@@ -56,6 +62,7 @@ int main()
             	ls(&curDir[0]);
         	}
         }
+        // Call for cd
         else if(commands[0] == "cd")
         {
         	if(commands.size() == 1)
@@ -67,6 +74,7 @@ int main()
             	curDir = (string)cd(commands[1].c_str());
         	}
         }
+        // Call for exit
         else if(commands[0] == "exit")
         {
             exit(0);
@@ -108,20 +116,18 @@ int main()
 	        strcpy(inp,dname);
 	        dir_finder(dname,inp);
         }
-	// call rmdir
+		// call rmdir
         else if(commands[0] == "rmdir")
         {
         	char* dname = (char*)malloc(sizeof(char)*100);
-		std::strcpy(dname,curDir.c_str());
+			std::strcpy(dname,curDir.c_str());
         	char* inDir = (char*)malloc(sizeof(char)*100);
-		std::strcpy(inDir,commands[1].c_str());
+			std::strcpy(inDir,commands[1].c_str());
 	        strcat(dname,"/");
 	        strcat(dname,inDir);
 	        rmdir_find(dname);
         }
-
-	    
-	else
+		else
         {
         	cout << "Invalid keyword.\n";
         }
