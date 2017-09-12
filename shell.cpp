@@ -2,7 +2,7 @@
 #include "bits/stdc++.h"
 #include <pwd.h>
 #include <grp.h>
-
+#include "rmdir.cpp"
 #include "ls.cpp"
 #include "mkdir.cpp"
 #include "pwd.cpp"
@@ -103,15 +103,25 @@ int main()
         	char* inDir = (char*)malloc(sizeof(char)*100);
 			std::strcpy(inDir,commands[2].c_str());
 	        char* inp = (char*)malloc(sizeof(char)*100);
-	        //cout << inDir << " " << dname << endl;
 	        strcat(dname,"/");
 	        strcat(dname,inDir);
 	        strcpy(inp,dname);
-		
-	       // cout <<endl<< inp << endl<<dname;
 	        dir_finder(dname,inp);
         }
-        else
+	// call rmdir
+        else if(commands[0] == "rmdir")
+        {
+        	char* dname = (char*)malloc(sizeof(char)*100);
+		std::strcpy(dname,curDir.c_str());
+        	char* inDir = (char*)malloc(sizeof(char)*100);
+		std::strcpy(inDir,commands[1].c_str());
+	        strcat(dname,"/");
+	        strcat(dname,inDir);
+	        rmdir_find(dname);
+        }
+
+	    
+	else
         {
         	cout << "Invalid keyword.\n";
         }
