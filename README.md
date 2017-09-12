@@ -1,10 +1,43 @@
+# Group members
+* Abhyuday Bisht
+* Anusha
+* Ayush Mudgal
+* Harshendra shah
+* Jayant Sharma
+* Mohit Kumar Yadav
+* Pritha Upadhyay
+* Raja Bhargava
+* Saurabh Pandit
+* Yogendra Jangir
+
 # Shell
-OS lab mini project
+OS lab mini project -1
 
-## General Guidelines
+# How to run
+`g++ -o shell shell.cpp`
 
-* Always Work on a saparate branch.
+`./shell`
 
-* Never-ever push a commit directly to master branch, always send a PR.
+# Documentation
+## **cd**
+## *cd dir_name*
 
-For any queries call or whatsapp 8764241491
+dir_name is the path of the new working directory.
+
+## *ls*
+ls lists all the files and directories in the current directory
+
+## *mkdir dir_name*
+Creates a new directory named dir_name in current directory
+
+## *mkdir -p path*
+Creates a new directory in the given path
+
+## *mkdir -v dir_name*
+Creates a new directory named dir_name in current directory and prints "dir_name created" on the console window.
+
+## *rmdir dir_name*
+Deletes the directory named dir_name
+
+## *exit*
+Exits the console
