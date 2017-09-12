@@ -10,11 +10,11 @@
 
 using namespace std;
 
-DIR* d;
-int dir_finder(char*);
-int dir_finder(char* dname) // Recursive function for finding file/directory and deleteing them
+int rmdir_finder(char*);
+int rmdir_finder(char* dname) // Recursive function for finding file/directory and deleteing them
 {
- 
+
+    DIR* d;
     d = opendir(dname);
     struct dirent *dir;          /* Includes :-     1) ino_t d_ino - Stores file serial number
     			        	            2) char d_name[] - Stores name of directory  */ 													

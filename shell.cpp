@@ -7,6 +7,7 @@
 #include "mkdir.cpp"
 #include "pwd.cpp"
 #include "rm.cpp"
+#include "rmdir.cpp"
 #include "cd.cpp"
 
 using namespace std;
@@ -110,6 +111,21 @@ int main()
 		
 	       // cout <<endl<< inp << endl<<dname;
 	        dir_finder(dname,inp);
+        }
+        else if(commands[0] == "rmdir")
+        {
+        	char* dname = (char*)malloc(sizeof(char)*100);
+			std::strcpy(dname,curDir.c_str());
+        	char* inDir = (char*)malloc(sizeof(char)*100);
+			std::strcpy(inDir,commands[1].c_str());
+	        char* inp = (char*)malloc(sizeof(char)*100);
+	        //cout << inDir << " " << dname << endl;
+	        strcat(dname,"/");
+	        strcat(dname,inDir);
+	        strcpy(inp,dname);
+		
+	       // cout <<endl<< inp << endl<<dname;
+	        rmdir_finder(dname);
         }
         else
         {
