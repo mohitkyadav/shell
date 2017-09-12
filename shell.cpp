@@ -1,4 +1,5 @@
 #include "ls.cpp"
+#include "ls-l.cpp"
 #include "mkdir.cpp"
 #include "pwd.cpp"
 #include "rmdir.cpp"
@@ -35,7 +36,14 @@ int main()
         }
         else if(commands[0] == "ls")
         {
-            ls(&curDir[0]);
+        	if( commands.size() > 1)
+        	{
+            	l(&curDir[0]);
+        	}
+        	else
+        	{
+            	ls(&curDir[0]);
+        	}
         }
         else if(commands[0] == "cd")
         {
