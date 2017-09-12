@@ -11,7 +11,7 @@
 using namespace std;
 
 char* a = (char*)"/";
-int ret=1,i,plen,lencur,leninp;
+int ret=1,i,plen;
 char inp[100];
 DIR* d;
 int dir_finder(char*, char*);
@@ -37,13 +37,11 @@ int dir_finder(char* dname, char* inp)
 	        return 0;
         }
 
-        lencur=strlen(dname);
-        leninp=strlen(inp);
+       
         // Deleting the input directory
-        if( (lencur==leninp) && (strcmp(dname, inp)==0) && (dir == NULL))
+        if((strcmp(dname, inp)==0) && (dir == NULL))
         {
             rmdir(dname);
-            //cout<<"\nInputted Directory has been removed SUCCESSFULLY.. Action Completed !!!!!\n\n\n\n";
             return 0; 
         }
         // Deleting an empty subdirectory
@@ -74,17 +72,10 @@ int dir_finder(char* dname, char* inp)
         parent_name [plen-1] = '\0';
         ret = remove(dname);
         if(ret ==0)
-        {
-            //cout <<" The following File has been successfully deleted :: "<<dname<<endl;
             dir_finder(parent_name, inp);
-        }
-        else if(ret ==-1)
-        {
-            //cout<<" "<< dname <<"  :- File cannot be deleted \n";
-        }
-    }
+     }
     else
-        perror("error");
+        perror("Error : ");
 
 }
 // Function to reverse the passed string
