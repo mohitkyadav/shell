@@ -1,33 +1,42 @@
+#include <string>
+#include "bits/stdc++.h"
+#include <pwd.h>
+#include <grp.h>
+
 #include "ls.cpp"
 #include "mkdir.cpp"
 #include "pwd.cpp"
 #include "rmdir.cpp"
 #include "cd.cpp"
-#include <string>
-#include "bits/stdc++.h"
+
 using namespace std;
 
 vector <string> split(const string &text, char sep)
 {
-	vector<string> tokens;
+	vector<string> commands;
 	size_t start = 0, end = 0;
 	while ((end = text.find(sep, start)) != string::npos)
 	{
-		tokens.push_back(text.substr(start, end - start));
+		commands.push_back(text.substr(start, end - start));
 		start = end + 1;
 	}
-	tokens.push_back(text.substr(start));
-	tokens.erase(remove(tokens.begin(), tokens.end(), ""), tokens.end());
-	return tokens;
+	commands.push_back(text.substr(start));
+	commands.erase(remove(commands.begin(), commands.end(), ""), commands.end());
+	return commands;
 }
 
 int main()
 { 
+	register struct passwd *pw;
+	register uid_t uid;
+	uid = geteuid ();
+	pw = getpwuid (uid);
+	string root_name = pw->pw_name;
     string curDir = pwd();
     while(1)
     {
         string args;
-        cout << "myshell: " << curDir << "$ ";
+        cout << root_name << ": " << curDir << "$ ";
         getline(cin, args);
         vector < string > commands = split(args, ' ');
         if(commands[0] == "pwd")
