@@ -1,14 +1,14 @@
 # Group members
-* Abhyuday Bisht
-* Anusha
-* Ayush Mudgal
-* Harshendra shah
-* Jayant Sharma
-* Mohit Kumar Yadav
-* Pritha Upadhyay
-* Raja Bhargava
-* Saurabh Pandit
-* Yogendra Jangir
+* Abhyuday Bisht -- rmdir
+* Anusha --ls
+* Ayush Mudgal --mkdir
+* Harshendra shah --mkdir
+* Jayant Sharma --cd
+* Mohit Kumar Yadav --shell
+* Pritha Upadhyay     -- pwd
+* Raja Bhargava       -- ls -l
+* Saurabh Pandit      -- rmdir
+* Yogendra Jangir     -- rmdir
 
 # Shell
 OS lab mini project -1
