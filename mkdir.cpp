@@ -36,13 +36,3 @@ int mk_dirv(string path, string dirname)
     }
 	return 0;
 }
-
-int mk_dirp(string path)
-{
-	int rc = mkdir(&path[0], 0777);
-	if (rc < 0)
-    {
-        perror("mkdir");// Shows Error
-    }
-	return 0;
-}

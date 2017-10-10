@@ -97,11 +97,7 @@ int main()
             {
                 newFolder = commands[2];
                 flag = commands[1];
-                if(flag == "-p")
-                {
-                	mk_dirp(newFolder);
-                }
-                else if(flag == "-v")
+                if(flag == "-v")
                 {
                 	mk_dirv(newFolder, newFolder);
                 }
