@@ -3,6 +3,7 @@
 #include <string>
 #include <pwd.h>
 #include <grp.h>
+#include <signal.h>
 #include <algorithm>
 #include <vector>
 
@@ -85,7 +86,7 @@ int main()
         // Call for exit
         else if(commands[0] == "exit")
         {
-            exit(0);
+            kill(getppid(), SIGKILL);
         }
         // call mkdir
         else if(commands[0] == "mkdir")
