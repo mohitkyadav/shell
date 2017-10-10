@@ -10,19 +10,22 @@
 using namespace std;
 
 char* a = (char*)"/";
-int ret=1,i,plen;
-char inp[100];
+int ret,i,plen;
 DIR* d;
 int dir_finder(char*, char*);
+
 char *strrev(char *); //Function to reverse the string given as an argument
+
+char* getpname(char *); //Function to get the parent name of a file/directory
 
 // Recursive function for finding file/directory and deleteing them
 int dir_finder(char* dname, char* inp)
 {
-    //cout << dname;
     d = opendir(dname);
-    struct dirent *dir; /* Includes :- 1) ino_t d_ino - stores file serial number
-    								   2) char d_name[] - stores name of entry														*/
+    struct dirent *dir;
+    /* Includes :- 1) ino_t d_ino - stores file serial number
+                   2) char d_name[] - stores name of entry														*/
+
     if (d!=NULL)		// Returns NULL when given address is not a directory
     {
         while ((dir = readdir(d)) != NULL)   // On successfull completion, returns pointer to the object "dir" of type "struct dirent"
@@ -48,30 +51,25 @@ int dir_finder(char* dname, char* inp)
             {
 
                 char* parent_name= (char*)malloc(sizeof(char) * 100);
-                strcpy(parent_name,dname);
-                parent_name=strrev(parent_name);
-                parent_name = strchr(parent_name, '/');	// Returns the string after the first occurence of passed argument#2
-                parent_name=strrev(parent_name);
-                plen=strlen(parent_name);
-                parent_name [plen-1] = '\0';
+                parent_name=getpname(dname);
                 i=rmdir(dname);
-                //cout<<"The following directory is removed :: "<< dname <<endl;
-                dir_finder(parent_name, inp);
+                if(i==0)
+                    dir_finder(parent_name, inp);
+                else
+                    perror("Error: ");
          	}
 	}
 	// Delete the files in directory
     else if(errno == ENOTDIR)
     {
         char* parent_name = (char*)malloc(sizeof(char) * 100);
-        strcpy(parent_name,dname);
-        parent_name=strrev(parent_name);
-        parent_name = strchr(parent_name, '/');
-        parent_name=strrev(parent_name);
-        plen=strlen(parent_name);
-        parent_name [plen-1] = '\0';
+        parent_name=getpname(dname);
         ret = remove(dname);
         if(ret ==0)
             dir_finder(parent_name, inp);
+        else
+            perror("Error : ");
+
      }
     else
         perror("Error : ");
@@ -91,4 +89,16 @@ char *strrev(char *str)
         *p1 ^= *p2;
     }
     return str;
+}
+// Function to get the parent directory
+char* getpname(char* dname)
+{
+        char* tmp_name = (char*)malloc(sizeof(char) * 100);
+        strcpy(tmp_name,dname);
+        tmp_name=strrev(tmp_name);
+        tmp_name= strchr(tmp_name, '/');
+        tmp_name=strrev(tmp_name);
+        plen=strlen(tmp_name);
+        tmp_name[plen-1] = '\0';
+        return tmp_name;
 }
