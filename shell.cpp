@@ -102,13 +102,17 @@ int main()
                 }
                 else if(flag == "-v")
                 {
-                	mk_dirv(curDir, newFolder);
+                	mk_dirv(newFolder, newFolder);
+                }
+                else
+                {
+                    cout << "Flag invalid\n";
                 }
             }
             else
             {
                 newFolder = commands[1];
-                mk_dir(curDir, newFolder);
+                mk_dir(newFolder);
             }
         }
         // call rm -rf

@@ -11,9 +11,9 @@ using namespace std;
 	param: @path: path where the directory is to be created
 	param: @dirname: name of the directory that is to be created
 */
-int mk_dir(string path, string dirname)
+int mk_dir(string path)
 {
-	path += "/" + dirname + "/";
+	//path += "/" + dirname + "/";
 	int rc = mkdir(&path[0], 0777);
 	if (rc < 0)
     {
@@ -24,7 +24,7 @@ int mk_dir(string path, string dirname)
 
 int mk_dirv(string path, string dirname)
 {
-	path += "/" + dirname + "/";
+	//path += "/" + dirname + "/";
 	int rc = mkdir(&path[0], 0777);
 	if (rc < 0)
     {
