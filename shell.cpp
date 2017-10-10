@@ -31,7 +31,7 @@ vector <string> split(const string &text, char sep)
 }
 
 int main()
-{ 
+{
 	register struct passwd *pw;
 	register uid_t uid;
 	uid = geteuid ();
@@ -55,7 +55,14 @@ int main()
         {
         	if( commands.size() > 1)
         	{
-            	l(&curDir[0]);
+        	    if(commands[1] == "-l")
+                    l(&curDir[0]);
+                else
+                {
+                    cout << "Flag does not exist" << "\n";
+                    cout << "Try: ls -l" << "\n";
+
+                }
         	}
         	else
         	{
@@ -90,11 +97,11 @@ int main()
                 flag = commands[1];
                 if(flag == "-p")
                 {
-                	mk_dirp(newFolder);     
+                	mk_dirp(newFolder);
                 }
                 else if(flag == "-v")
                 {
-                	mk_dirv(curDir, newFolder);     
+                	mk_dirv(curDir, newFolder);
                 }
             }
             else

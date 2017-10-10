@@ -1,6 +1,7 @@
 #include<iostream>
 #include <sys/stat.h>
 #include<stdio.h>
+#include <unistd.h>
 #include<stdlib.h>
 #include<string>
 
@@ -13,20 +14,35 @@ using namespace std;
 int mk_dir(string path, string dirname)
 {
 	path += "/" + dirname + "/";
-	mkdir(&path[0], 0777);
+	int rc = mkdir(&path[0], 0777);
+	if (rc < 0)
+    {
+        perror("mkdir");// Shows Error
+    }
 	return 0;
 }
 
 int mk_dirv(string path, string dirname)
 {
 	path += "/" + dirname + "/";
-	mkdir(&path[0], 0777);
-	cout << dirname << " created.\n";
+	int rc = mkdir(&path[0], 0777);
+	if (rc < 0)
+    {
+        perror("mkdir");// Shows Error
+    }
+    else
+    {
+        cout << dirname << " created.\n";
+    }
 	return 0;
 }
 
 int mk_dirp(string path)
 {
-	mkdir(&path[0], 0777);
+	int rc = mkdir(&path[0], 0777);
+	if (rc < 0)
+    {
+        perror("mkdir");// Shows Error
+    }
 	return 0;
 }
