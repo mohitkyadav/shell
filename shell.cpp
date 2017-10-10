@@ -55,7 +55,7 @@ int main()
         {
         	if( commands.size() > 1)
         	{
-        	    if(commands[1] == "-l")
+        	    if(commands[1] == "-l" && commands.size() <= 2)
                     l(&curDir[0]);
                 else
                 {
