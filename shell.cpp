@@ -136,7 +136,7 @@ int main()
         }
 		else
         {
-        	cout << "Invalid keyword.\n";
+        	cout << args << " : Invalid command.\n";
         }
         commands.clear();
     }

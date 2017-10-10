@@ -26,8 +26,8 @@ int rmdir_find(char* dname) // Recursive function for finding file/directory and
             cout<<"Error : Cannot delete a non-empty directory\n";
 	        return 0;
         }
-	rmdir(dname);
-	return 0;
+        rmdir(dname);
+        return 0;
     }
     else
     {
