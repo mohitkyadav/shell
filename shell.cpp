@@ -74,7 +74,8 @@ int main()
         {
         	if(commands.size() == 1)
         	{
-        		curDir = "/home/";
+        		curDir = "/home/"+user_name;
+        		curDir = (string)cd(curDir.c_str());
         	}
         	else
         	{

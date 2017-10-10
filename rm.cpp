@@ -17,7 +17,7 @@ int dir_finder(char*, char*);
 char *strrev(char *); //Function to reverse the string given as an argument
 
 // Recursive function for finding file/directory and deleteing them
-int dir_finder(char* dname, char* inp) 
+int dir_finder(char* dname, char* inp)
 {
     //cout << dname;
     d = opendir(dname);
@@ -36,12 +36,12 @@ int dir_finder(char* dname, char* inp)
 	        return 0;
         }
 
-       
+
         // Deleting the input directory
         if((strcmp(dname, inp)==0) && (dir == NULL))
         {
             rmdir(dname);
-            return 0; 
+            return 0;
         }
         // Deleting an empty subdirectory
             if(dir==NULL)
@@ -63,8 +63,8 @@ int dir_finder(char* dname, char* inp)
     else if(errno == ENOTDIR)
     {
         char* parent_name = (char*)malloc(sizeof(char) * 100);
-	strcpy(parent_name,dname);
-	parent_name=strrev(parent_name);
+        strcpy(parent_name,dname);
+        parent_name=strrev(parent_name);
         parent_name = strchr(parent_name, '/');
         parent_name=strrev(parent_name);
         plen=strlen(parent_name);

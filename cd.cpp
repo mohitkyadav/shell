@@ -1,7 +1,6 @@
 #include <cstdio>
 #include <unistd.h>
-#ifndef CD_H
-#define CD_H
+
 char* cd(const char *dir)
 {
     char *path = NULL;
@@ -15,4 +14,3 @@ char* cd(const char *dir)
     //returns changed Directory path
     return path;
 }
-#endif
