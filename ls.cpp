@@ -58,7 +58,7 @@ string getLastAccessedTime(const char* pathname)
 
     struct tm* tmModifiedTime;
     struct stat attrib; // create a file attribute structure
-    stat("Filename.Ext", &attrib);
+    stat(pathname, &attrib);
     tmModifiedTime = gmtime(&(attrib.st_mtime));
     //cout<<"\t"<<asctime(tmModifiedTime);
     string t = asctime(tmModifiedTime);
