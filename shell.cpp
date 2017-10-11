@@ -93,7 +93,7 @@ int main()
         {
             string newFolder;
             string flag;
-            if(commands.size() > 2)
+            if(commands.size() >= 2)
             {
                 // newFolder = commands[2];
                 flag = commands[1];
