@@ -155,6 +155,7 @@ void ls(const char*  curDir)
             cout<<"\t";
         }
         closedir(pointerToDirectory);
+        cout<<"\n";
     }
     else
     {
