@@ -90,16 +90,19 @@ void l(const char*  curDir)
         while( directoryStream = readdir(pointerToDirectory))
         {
             if (strcmp(directoryStream->d_name, ".")==0 || strcmp(directoryStream->d_name, "..")==0 )
-            continue;
+            {
+                continue;
+            }
             getFilePermission(directoryStream->d_name);
 
             //getLastAccessedTime(directoryStream->d_name);
 
-        //Gets size of directory or file in bytes/
+            //Gets size of directory or file in bytes/
             size_t s =  getFilesize(directoryStream->d_name);
-        //Gets extension of file.
+            //Gets extension of file.
             string ex = getExt(directoryStream->d_name);
-            if(s!=0) {
+            if(s!=0) 
+            {
             // Print the name of directories in current directory.
 
 
@@ -108,7 +111,8 @@ void l(const char*  curDir)
                 cout<<setw(10)<<right<<ex;
                 cout<<setw(30)<<right<<getLastAccessedTime(directoryStream->d_name);
             }
-            else {
+            else 
+            {
 
                cout<<setw(55)<<left<<directoryStream->d_name;
                cout<<setw(10)<<right<<ex;
