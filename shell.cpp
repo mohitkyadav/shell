@@ -19,25 +19,25 @@ using namespace std;
 // splits the line into a vector of string
 vector <string> split(const string &text, char sep)
 {
-	vector<string> commands;
-	size_t start = 0, end = 0;
-	while ((end = text.find(sep, start)) != string::npos)
-	{
-		commands.push_back(text.substr(start, end - start));
-		start = end + 1;
-	}
-	commands.push_back(text.substr(start));
-	commands.erase(remove(commands.begin(), commands.end(), ""), commands.end());
-	return commands;
+    vector<string> commands;
+    size_t start = 0, end = 0;
+    while ((end = text.find(sep, start)) != string::npos)
+    {
+        commands.push_back(text.substr(start, end - start));
+        start = end + 1;
+    }
+    commands.push_back(text.substr(start));
+    commands.erase(remove(commands.begin(), commands.end(), ""), commands.end());
+    return commands;
 }
 
 int main()
 {
-	register struct passwd *pw;
-	register uid_t uid;
-	uid = geteuid ();
-	pw = getpwuid (uid);
-	string user_name = pw->pw_name;
+    register struct passwd *pw;
+    register uid_t uid;
+    uid = geteuid ();
+    pw = getpwuid (uid);
+    string user_name = pw->pw_name;
     string curDir = pwd();
     while(1)
     {
@@ -54,9 +54,9 @@ int main()
         // Call for ls
         else if(commands[0] == "ls")
         {
-        	if( commands.size() > 1)
-        	{
-        	    if(commands[1] == "-l" && commands.size() <= 2)
+            if( commands.size() > 1)
+            {
+                if(commands[1] == "-l" && commands.size() <= 2)
                     l(&curDir[0]);
                 else
                 {
@@ -64,24 +64,24 @@ int main()
                     cout << "Try: ls -l" << "\n";
 
                 }
-        	}
-        	else
-        	{
-            	ls(&curDir[0]);
-        	}
+            }
+            else
+            {
+                ls(&curDir[0]);
+            }
         }
         // Call for cd
         else if(commands[0] == "cd")
         {
-        	if(commands.size() == 1)
-        	{
-        		curDir = "/home/"+user_name;
-        		curDir = (string)cd(curDir.c_str());
-        	}
-        	else
-        	{
-            	curDir = (string)cd(commands[1].c_str());
-        	}
+            if(commands.size() == 1)
+            {
+                curDir = "/home/"+user_name;
+                curDir = (string)cd(curDir.c_str());
+            }
+            else
+            {
+                curDir = (string)cd(commands[1].c_str());
+            }
         }
         // Call for exit
         else if(commands[0] == "exit")
@@ -99,7 +99,7 @@ int main()
                 flag = commands[1];
                 if(flag == "-v")
                 {
-                	mk_dirv(newFolder, newFolder);
+                    mk_dirv(newFolder, newFolder);
                 }
                 else
                 {
@@ -115,30 +115,30 @@ int main()
         // call rm -rf
         else if(commands[0] == "rm" && commands[1] == "-rf")
         {
-        	char* dname = (char*)malloc(sizeof(char)*100);
-			std::strcpy(dname,curDir.c_str());
-        	char* inDir = (char*)malloc(sizeof(char)*100);
-			std::strcpy(inDir,commands[2].c_str());
-	        char* inp = (char*)malloc(sizeof(char)*100);
-	        strcat(dname,"/");
-	        strcat(dname,inDir);
-	        strcpy(inp,dname);
-	        dir_finder(dname,inp);
+            char* dname = (char*)malloc(sizeof(char)*100);
+            std::strcpy(dname,curDir.c_str());
+            char* inDir = (char*)malloc(sizeof(char)*100);
+            std::strcpy(inDir,commands[2].c_str());
+            char* inp = (char*)malloc(sizeof(char)*100);
+            strcat(dname,"/");
+            strcat(dname,inDir);
+            strcpy(inp,dname);
+            dir_finder(dname,inp);
         }
-		// call rmdir
+        // call rmdir
         else if(commands[0] == "rmdir")
         {
-        	char* dname = (char*)malloc(sizeof(char)*100);
-			std::strcpy(dname,curDir.c_str());
-        	char* inDir = (char*)malloc(sizeof(char)*100);
-			std::strcpy(inDir,commands[1].c_str());
-	        strcat(dname,"/");
-	        strcat(dname,inDir);
-	        rmdir_find(dname);
+            char* dname = (char*)malloc(sizeof(char)*100);
+            std::strcpy(dname,curDir.c_str());
+            char* inDir = (char*)malloc(sizeof(char)*100);
+            std::strcpy(inDir,commands[1].c_str());
+            strcat(dname,"/");
+            strcat(dname,inDir);
+            rmdir_find(dname);
         }
-		else
+        else
         {
-        	cout << args << " : Invalid command.\n";
+            cout << args << " : Invalid command.\n";
         }
         commands.clear();
     }

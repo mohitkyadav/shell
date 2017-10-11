@@ -6,7 +6,7 @@ using namespace std;
 
 string pwd()
 {
-	char cwd[1024];
-	//cout << getcwd(cwd,sizeof(cwd));
-	return getcwd(cwd,sizeof(cwd));
+    char cwd[1024];
+    //cout << getcwd(cwd,sizeof(cwd));
+    return getcwd(cwd,sizeof(cwd));
 }

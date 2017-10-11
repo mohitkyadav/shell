@@ -58,15 +58,7 @@ string getLastAccessedTime(const char* pathname) {
     string t = asctime(tmModifiedTime);
     t = t.substr(0,t.length()-6);
     return t;
-    //int l = t.length();
-    //cout<<t;
-
-    /*if(stat(filename.c_str(), &fileStat) != 0) {
-        return ;
-    }
-    auto mod_time = fileStat.st_atim;
-    cout<<setw(20)<<right<<mod_time;*/
-                         }
+}
 
 void l(const char*  curDir)
 {
@@ -77,54 +69,54 @@ void l(const char*  curDir)
         ino_t  d_ino       file serial number
         char   d_name[]    name of entry
     */
-        struct dirent *directoryStream;
+    struct dirent *directoryStream;
 
     //Open the current directory.
-        pointerToDirectory = opendir(curDir);
+    pointerToDirectory = opendir(curDir);
     /*
         / is the root of the current drive;
         ./ is the current directory;
         ../ is the parent of the current directory.
     */
 
-        if( pointerToDirectory != NULL)
+    if( pointerToDirectory != NULL)
+    {
+        while( directoryStream = readdir(pointerToDirectory))
         {
-            while( directoryStream = readdir(pointerToDirectory))
-            {
-                if (strcmp(directoryStream->d_name, ".")==0 || strcmp(directoryStream->d_name, "..")==0 )
-                continue;
-                getFilePermission(directoryStream->d_name);
+            if (strcmp(directoryStream->d_name, ".")==0 || strcmp(directoryStream->d_name, "..")==0 )
+            continue;
+            getFilePermission(directoryStream->d_name);
 
-                //getLastAccessedTime(directoryStream->d_name);
+            //getLastAccessedTime(directoryStream->d_name);
 
-            //Gets size of directory or file in bytes/
-                size_t s =  getFilesize(directoryStream->d_name);
-            //Gets extension of file.
-                string ex = getExt(directoryStream->d_name);
-                if(s!=0) {
-                // Print the name of directories in current directory.
+        //Gets size of directory or file in bytes/
+            size_t s =  getFilesize(directoryStream->d_name);
+        //Gets extension of file.
+            string ex = getExt(directoryStream->d_name);
+            if(s!=0) {
+            // Print the name of directories in current directory.
 
 
-                    cout<<setw(40)<<left<<directoryStream->d_name;
-                    cout<<setw(15)<<right<<s;
-                    cout<<setw(10)<<right<<ex;
-                    cout<<setw(30)<<right<<getLastAccessedTime(directoryStream->d_name);
-                }
-                else {
+                cout<<setw(40)<<left<<directoryStream->d_name;
+                cout<<setw(15)<<right<<s;
+                cout<<setw(10)<<right<<ex;
+                cout<<setw(30)<<right<<getLastAccessedTime(directoryStream->d_name);
+            }
+            else {
 
-                   cout<<setw(55)<<left<<directoryStream->d_name;
-                   cout<<setw(10)<<right<<ex;
-                   cout<<setw(30)<<right<<getLastAccessedTime(directoryStream->d_name);
-               }
-               cout<<"\n";
-
+               cout<<setw(55)<<left<<directoryStream->d_name;
+               cout<<setw(10)<<right<<ex;
+               cout<<setw(30)<<right<<getLastAccessedTime(directoryStream->d_name);
            }
+           cout<<"\n";
 
-
-           closedir(pointerToDirectory);
        }
-       else
-       {
+
+
+       closedir(pointerToDirectory);
+    }
+    else
+    {
         cout<<"Couldn't open the directory";
     }
 
@@ -140,11 +132,11 @@ void ls(const char*  curDir)
        ino_t  d_ino       file serial number
        char   d_name[]    name of entry
     */
-       struct dirent *directoryStream;
+    struct dirent *directoryStream;
     //Open the current directory.
-       pointerToDirectory = opendir(curDir);
-       if( pointerToDirectory != NULL)
-       {
+   pointerToDirectory = opendir(curDir);
+   if( pointerToDirectory != NULL)
+    {
         while( directoryStream = readdir(pointerToDirectory))
         {
             if (strcmp(directoryStream->d_name, ".")==0 || strcmp(directoryStream->d_name, "..")==0 )

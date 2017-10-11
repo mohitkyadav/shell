@@ -2,9 +2,9 @@
 #include <string.h>
 #include <sys/types.h>  // used for ino_t
 #include <dirent.h>     // used for structure : struct dirent
-#include <cerrno>		// For finding error in opening directory
-#include<cstdio>		// perror() and remove()
-#include<unistd.h>		// rmdir()
+#include <cerrno>       // For finding error in opening directory
+#include<cstdio>        // perror() and remove()
+#include<unistd.h>      // rmdir()
 
 
 using namespace std;
@@ -24,9 +24,9 @@ int dir_finder(char* dname, char* inp)
     d = opendir(dname);
     struct dirent *dir;
     /* Includes :- 1) ino_t d_ino - stores file serial number
-                   2) char d_name[] - stores name of entry														*/
+                   2) char d_name[] - stores name of entry                                                      */
 
-    if (d!=NULL)		// Returns NULL when given address is not a directory
+    if (d!=NULL)        // Returns NULL when given address is not a directory
     {
         while ((dir = readdir(d)) != NULL)   // On successfull completion, returns pointer to the object "dir" of type "struct dirent"
         {
@@ -36,7 +36,7 @@ int dir_finder(char* dname, char* inp)
             strcat(dname,(dir->d_name));
             closedir(d);
             dir_finder(dname, inp);
-	        return 0;
+            return 0;
         }
 
 
@@ -47,19 +47,23 @@ int dir_finder(char* dname, char* inp)
             return 0;
         }
         // Deleting an empty subdirectory
-            if(dir==NULL)
-            {
+        if(dir==NULL)
+        {
 
-                char* parent_name= (char*)malloc(sizeof(char) * 100);
-                parent_name=getpname(dname);
-                i=rmdir(dname);
-                if(i==0)
-                    dir_finder(parent_name, inp);
-                else
-                    perror("Error: ");
-         	}
-	}
-	// Delete the files in directory
+            char* parent_name= (char*)malloc(sizeof(char) * 100);
+            parent_name=getpname(dname);
+            i=rmdir(dname);
+            if(i==0)
+            {
+                dir_finder(parent_name, inp);
+            }
+            else
+            {
+                perror("Error: ");
+            }
+        }
+    }
+    // Delete the files in directory
     else if(errno == ENOTDIR)
     {
         char* parent_name = (char*)malloc(sizeof(char) * 100);
@@ -70,7 +74,7 @@ int dir_finder(char* dname, char* inp)
         else
             perror("Error : ");
 
-     }
+    }
     else
         perror("Error : ");
 
@@ -81,7 +85,9 @@ char *strrev(char *str)
     char *p1, *p2;
 
     if (! str || ! *str)
+    {
         return str;
+    }
     for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2)
     {
         *p1 ^= *p2;
@@ -93,12 +99,12 @@ char *strrev(char *str)
 // Function to get the parent directory
 char* getpname(char* dname)
 {
-        char* tmp_name = (char*)malloc(sizeof(char) * 100);
-        strcpy(tmp_name,dname);
-        tmp_name=strrev(tmp_name);
-        tmp_name= strchr(tmp_name, '/');
-        tmp_name=strrev(tmp_name);
-        plen=strlen(tmp_name);
-        tmp_name[plen-1] = '\0';
-        return tmp_name;
+    char* tmp_name = (char*)malloc(sizeof(char) * 100);
+    strcpy(tmp_name,dname);
+    tmp_name=strrev(tmp_name);
+    tmp_name= strchr(tmp_name, '/');
+    tmp_name=strrev(tmp_name);
+    plen=strlen(tmp_name);
+    tmp_name[plen-1] = '\0';
+    return tmp_name;
 }
