@@ -33,8 +33,8 @@ vector <string> split(const string &text, char sep)
 
 int main()
 {
-    register struct passwd *pw;
-    register uid_t uid;
+    struct passwd *pw;
+    uid_t uid;
     uid = geteuid ();
     pw = getpwuid (uid);
     string user_name = pw->pw_name;
@@ -95,46 +95,70 @@ int main()
             string flag;
             if(commands.size() > 2)
             {
-                newFolder = commands[2];
+                // newFolder = commands[2];
                 flag = commands[1];
                 if(flag == "-v")
                 {
-                    mk_dirv(newFolder, newFolder);
+                    for(int i=2;i<commands.size();i++)
+                    {
+                        newFolder=commands[i];
+                        mk_dirv(newFolder, newFolder);
+                    }
+                }
+                else if(flag.at(0)=='-')
+                {
+                    cout<<"Invalid Command\n";
                 }
                 else
                 {
-                    cout << "Flag invalid\n";
+                    //cout << "Flag invalid\n";
+                    for(int i=1;i<commands.size();i++)
+                    {
+                        newFolder=commands[i];
+                        mk_dir(newFolder);
+                    }
+
                 }
             }
+            /*
             else
             {
                 newFolder = commands[1];
                 mk_dir(newFolder);
             }
+            */
         }
         // call rm -rf
         else if(commands[0] == "rm" && commands[1] == "-rf")
         {
-            char* dname = (char*)malloc(sizeof(char)*100);
-            std::strcpy(dname,curDir.c_str());
-            char* inDir = (char*)malloc(sizeof(char)*100);
-            std::strcpy(inDir,commands[2].c_str());
-            char* inp = (char*)malloc(sizeof(char)*100);
-            strcat(dname,"/");
-            strcat(dname,inDir);
-            strcpy(inp,dname);
-            dir_finder(dname,inp);
+
+            for(int i=2;i<commands.size();i++)
+            {
+                char* dname = (char*)malloc(sizeof(char)*100);
+                strcpy(dname,curDir.c_str());
+                char* inDir = (char*)malloc(sizeof(char)*100);
+                strcpy(inDir,commands[i].c_str());
+                char* inp = (char*)malloc(sizeof(char)*100);
+                strcat(dname,"/");
+                strcat(dname,inDir);
+                strcpy(inp,dname);
+                dir_finder(dname,inp);
+            }
         }
         // call rmdir
         else if(commands[0] == "rmdir")
         {
-            char* dname = (char*)malloc(sizeof(char)*100);
-            std::strcpy(dname,curDir.c_str());
-            char* inDir = (char*)malloc(sizeof(char)*100);
-            std::strcpy(inDir,commands[1].c_str());
-            strcat(dname,"/");
-            strcat(dname,inDir);
-            rmdir_find(dname);
+
+            for(int i=1;i<commands.size();i++)
+            {
+                char* dname = (char*)malloc(sizeof(char)*100);
+                strcpy(dname,curDir.c_str());
+                char* inDir = (char*)malloc(sizeof(char)*100);
+                strcpy(inDir,commands[i].c_str());
+                strcat(dname,"/");
+                strcat(dname,inDir);
+                rmdir_find(dname);
+            }
         }
         else
         {
