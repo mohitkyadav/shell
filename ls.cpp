@@ -14,7 +14,8 @@ string getExt(string pathName)
 {
     string ext;
     // Finds the last persiod character of the string
-    if (pathName.find('.') != std::string::npos) {
+    if (pathName.find('.') != std::string::npos) 
+    {
         int period = pathName.find_last_of(".");
         ext = pathName.substr(period + 1);
         return ext;
@@ -22,17 +23,21 @@ string getExt(string pathName)
     return ext ;
 }
 
-size_t getFilesize(const char* filename) {
+size_t getFilesize(const char* filename) 
+{
     struct stat st;
-    if(stat(filename, &st) != 0) {
+    if(stat(filename, &st) != 0) 
+    {
         return 0;
     }
     return st.st_size;
 }
 
-void getFilePermission(const char* filename) {
+void getFilePermission(const char* filename) 
+{
     struct stat fileStat;
-    if(stat(filename, &fileStat) != 0) {
+    if(stat(filename, &fileStat) != 0) 
+    {
         return ;
     }
     printf( (S_ISDIR(fileStat.st_mode)) ? "d" : "-");
@@ -48,7 +53,8 @@ void getFilePermission(const char* filename) {
     cout<<"\t";
 }
 
-string getLastAccessedTime(const char* pathname) {
+string getLastAccessedTime(const char* pathname) 
+{
 
     struct tm* tmModifiedTime;
     struct stat attrib; // create a file attribute structure
