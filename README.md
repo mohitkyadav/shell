@@ -1,17 +1,4 @@
-# Group members
-* Abhyuday Bisht -- rmdir
-* Anusha --ls
-* Ayush Mudgal --mkdir
-* Harshendra shah --mkdir
-* Jayant Sharma --cd
-* Mohit Kumar Yadav --shell, --rm
-* Pritha Upadhyay     -- pwd
-* Raja Bhargava       -- ls -l
-* Saurabh Pandit      -- rmdir
-* Yogendra Jangir     -- rmdir
-
 # Shell
-OS lab mini project -1
 
 # How to run
 `g++ -o shell shell.cpp`
